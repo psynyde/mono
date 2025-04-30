@@ -55,6 +55,8 @@ local palette = {
         [23] = "#b5b5b5",
         [24] = "#bfbfbf",
         [25] = "#e2e2e2",
+        -- UI specific colors
+        ui = "#151515",
     },
 }
 
@@ -174,8 +176,8 @@ M.style = function()
     highlight(0, "CursorLineNr", { fg = grey[10] })
 
     -- Cursor line
-    highlight(0, "CursorLine", { bg = grey[1] })
-    highlight(0, "CursorColumn", { bg = grey[1] })
+    highlight(0, "CursorLine", { bg = grey.ui })
+    highlight(0, "CursorColumn", { bg = grey.ui })
 
     -- Visual selection
     highlight(0, "Visual", { bg = grey[1] })
@@ -200,16 +202,17 @@ M.style = function()
     highlight(0, "VertSplit", { fg = grey[0] })
 
     -- Color column
-    highlight(0, "ColorColumn", { bg = grey[1] })
+    highlight(0, "ColorColumn", { bg = grey.ui })
 
     -- Conceal
     highlight(0, "Conceal", { fg = grey[19] })
 
     -- Diff
-    highlight(0, "DiffAdd", { bg = grey[1], fg = grey[23] })
-    highlight(0, "DiffChange", { bg = grey[1], fg = grey[16] })
-    highlight(0, "DiffDelete", { bg = grey[1], fg = grey[14] })
-    highlight(0, "DiffText", { bg = grey[1], fg = grey[22] })
+    -- TODO: needs to be tested more
+    highlight(0, "DiffAdd", { bg = grey.ui, fg = grey[23] })
+    highlight(0, "DiffChange", { bg = grey.ui, fg = grey[16] })
+    highlight(0, "DiffDelete", { bg = grey.ui, fg = grey[14] })
+    highlight(0, "DiffText", { bg = grey.ui, fg = grey[22] })
 
     -- GitSigns
     highlight(0, "Added", { fg = grey[17] })
@@ -245,7 +248,7 @@ M.style = function()
     highlight(0, "Question", { fg = grey[19] })
 
     -- Match parenthesis
-    highlight(0, "MatchParen", { bg = grey[1] })
+    highlight(0, "MatchParen", { bg = grey.ui })
 
     -- Cursor
     highlight(0, "Cursor", { fg = grey[22] })
@@ -307,12 +310,12 @@ M.style = function()
     highlight(0, "LazyNormal", { link = "Normal" })
 
     -- Floating window background
-    highlight(0, "NormalFloat", { bg = grey[1], fg = grey[22] })
+    highlight(0, "NormalFloat", { bg = grey.ui, fg = grey[22] })
 
     -- Winbar and WinbarNC (window bar)
-    -- NOTE: untested
-    highlight(0, "Winbar", { bg = grey[1], fg = grey[19] })
-    highlight(0, "WinbarNC", { bg = grey[1], fg = grey[9] })
+    -- TODO: untested
+    highlight(0, "Winbar", { bg = grey.ui, fg = grey[19] })
+    highlight(0, "WinbarNC", { bg = grey.ui, fg = grey[9] })
 
     -- Diagnostic highlights
     highlight(0, "DiagnosticOk", { fg = p.diag_ok })
@@ -359,7 +362,7 @@ M.style = function()
     highlight(0, "@lsp.type.enumMember", { link = "@constant" })
     highlight(0, "@lsp.type.escapeSequence", { link = "@string.escape" })
     highlight(0, "@lsp.type.formatSpecifier", { link = "@punctuation.special" })
-    highlight(0, "@lsp.type.interface", { fg = grey[17] }) -- Using grey[17] as default since flamingo color isn't defined
+    highlight(0, "@lsp.type.interface", { link = "@function.builtin" })
     highlight(0, "@lsp.type.keyword", { link = "@keyword" })
     highlight(0, "@lsp.type.namespace", { link = "@module" })
     highlight(0, "@lsp.type.number", { link = "@number" })

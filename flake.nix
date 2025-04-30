@@ -1,5 +1,5 @@
 {
-  description = "PsyNyde's neovim config :D";
+  description = "Mono colorscheme :D";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -16,7 +16,7 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
-        project = "Neovim Config";
+        project = "Mono colorscheme >:3";
       in
       {
         devShells.default = pkgs.mkShell {

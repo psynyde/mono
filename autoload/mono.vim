@@ -14,15 +14,10 @@ function! mono#Style()
     let g:colors_name = 'mono'
 
     " Define theme options.
-    let g:monoCursorColor = get(g:, 'monoCursorColor', v:false)
     let g:monoItalics = get(g:, 'monoItalics', v:true)
-    let g:monoNormalFloat = get(g:, 'monoNormalFloat', v:false)
     let g:monoTerminalColors = get(g:, 'monoTerminalColors', v:true)
     let g:monoTransparent = get(g:, 'monoTransparent', v:false)
-    let g:monoUndercurls = get(g:, 'monoUndercurls', v:true)
-    let g:monoUnderlineMatchParen = get(g:, 'monoUnderlineMatchParen', v:false)
-    let g:monoVirtualTextColor =  get(g:, 'monoVirtualTextColor', v:false)
-    let g:monoWinSeparator = get(g:, 'monoWinSeparator', 1)
+    let g:monoUndercurl = get(g:, 'monoUndercurl', v:true)
 
     " Background and foreground
     let s:palette = {
@@ -30,7 +25,6 @@ function! mono#Style()
     \ 'black': '#101010',
     \ 'white': '#ebebeb',
     \ 'bg': get(g:, 'monoTransparent', 0) ? 'NONE' : '#101010',
-    \ 'str': '#878787',
     \ 'term_black': '#101010',
     \ 'term_red': '#e64a6b',
     \ 'term_green': '#789978',
@@ -47,14 +41,18 @@ function! mono#Style()
     \ 'term_bright_magenta': '#b86cd4',
     \ 'term_bright_cyan': '#6f8595',
     \ 'term_bright_white': '#ffffff',
+    \ 'diag_ok': '#789978',
+    \ 'diag_error': '#e64a6b',
+    \ 'diag_warn': '#e69b7b',
     \ 'grey': [
-    \   '#191919', '#1d1d1d', '#212121', '#222222', '#252525',
-    \   '#262626', '#2b2b2b', '#323232', '#383838', '#3c3c3c',
-    \   '#404040', '#444444', '#454545', '#494949', '#4d4d4d',
-    \   '#525252', '#5f5f5f', '#626262', '#686868', '#6c6c6c',
-    \   '#707070', '#7e7e7e', '#8d8d8d', '#939393', '#979797',
-    \   '#a9a9a9', '#aaaaaa', '#b4b4b4', '#b5b5b5', '#bfbfbf', '#e2e2e2'
-    \ ]
+    \   '#191919', '#1d1d1d', '#222222', '#262626', '#2b2b2b',
+    \   '#323232', '#383838', '#3c3c3c', '#404040', '#454545',
+    \   '#494949', '#4d4d4d', '#525252', '#5f5f5f', '#626262',
+    \   '#686868', '#6c6c6c', '#707070', '#7e7e7e', '#8a8a8a',
+    \   '#939393', '#979797', '#aaaaaa', '#b5b5b5', '#bfbfbf',
+    \   '#e2e2e2'
+    \ ],
+    \ 'ui': '#151515'
     \}
     let s:g = s:palette.grey
 
@@ -79,97 +77,94 @@ function! mono#Style()
     endif
 
     " Background and text
-    execute 'highlight Normal guibg=' . s:palette.bg . ' guifg=' . s:g[26]
+    execute 'highlight Normal guibg=' . s:palette.bg . ' guifg=' . s:g[22]
 
     " Color of mode text, -- INSERT --
-    execute 'highlight ModeMsg guifg=' . s:g[22]
+    execute 'highlight ModeMsg guifg=' . s:g[19]
 
     " Comments
     if g:monoItalics
-        execute 'highlight Comment guifg=' . s:g[8] . ' gui=italic'
+        execute 'highlight Comment guifg=' . s:g[6] . ' gui=italic'
     else
-        execute 'highlight Comment guifg=' . s:g[8]
+        execute 'highlight Comment guifg=' . s:g[6]
     endif
 
     " Functions
-    execute 'highlight Function guifg=' . s:g[20]
-
-    " Parentheses and quotes
-    execute 'highlight Delimiter guifg=' . s:g[26]
+    execute 'highlight Function guifg=' . s:g[17]
 
     " Strings
-    execute 'highlight String guifg=' . s:palette.str
+    execute 'highlight String guifg=' . s:g[19]
 
     " Booleans
-    execute 'highlight Boolean guifg=' . s:g[22]
+    execute 'highlight Boolean guifg=' . s:g[19]
 
     " Identifiers
-    execute 'highlight Identifier guifg=' . s:g[20]
+    execute 'highlight Identifier guifg=' . s:g[17]
 
     " Color of titles
-    execute 'highlight Title guifg=' . s:g[17]
+    execute 'highlight Title guifg=' . s:g[14]
 
     " const, static
-    execute 'highlight StorageClass guifg=' . s:g[19]
+    execute 'highlight StorageClass guifg=' . s:g[16]
 
     " void, intptr_t
-    execute 'highlight Type guifg=' . s:g[23]
+    execute 'highlight Type guifg=' . s:g[20]
 
     " Numbers
-    execute 'highlight Constant guifg=' . s:g[22]
+    execute 'highlight Constant guifg=' . s:g[19]
 
     " Character constants
-    execute 'highlight Character guifg=' . s:g[22]
+    execute 'highlight Character guifg=' . s:g[19]
 
     " Exceptions
-    execute 'highlight Exception guifg=' . s:g[17]
+    execute 'highlight Exception guifg=' . s:g[14]
 
     " ifdef/endif
-    execute 'highlight PreProc guifg=' . s:g[19]
+    execute 'highlight PreProc guifg=' . s:g[16]
 
     " case in switch statement
-    execute 'highlight Label guifg=' . s:g[20]
+    execute 'highlight Label guifg=' . s:g[17]
 
     " end-of-line '$', end-of-file '~'
     execute 'highlight NonText guifg=' . s:g[5]
 
     " sizeof
-    execute 'highlight Operator guifg=' . s:g[26]
+    execute 'highlight Operator guifg=' . s:g[22]
 
     " for, while
-    execute 'highlight Repeat guifg=' . s:g[19]
+    execute 'highlight Repeat guifg=' . s:g[16]
 
     " Search
-    execute 'highlight Search guibg=' . s:g[1] . ' guifg=' . s:g[22]
-    execute 'highlight CurSearch guibg=' . s:g[21] . ' guifg=' . s:palette.black
-    execute 'highlight IncSearch guibg=' . s:g[25] . ' guifg=' . s:palette.black
+    execute 'highlight Search guibg=' . s:g[1] . ' guifg=' . s:g[19]
+    execute 'highlight CurSearch guibg=' . s:g[18] . ' guifg=' . s:palette.black
+    execute 'highlight IncSearch guibg=' . s:g[22] . ' guifg=' . s:palette.black
 
     " '\n' sequences
-    execute 'highlight Special guifg=' . s:g[21]
+    execute 'highlight Special guifg=' . s:g[18]
 
     " Line numbers
-    execute 'highlight LineNr guifg=' . s:g[5]
-    execute 'highlight CursorLineNr guifg=' . s:g[13]
+    execute 'highlight LineNr guifg=' . s:g[3]
+    execute 'highlight CursorLineNr guifg=' . s:g[10]
 
     " Cursor line
-    execute 'highlight CursorLine guibg=' . s:g[1]
-    execute 'highlight CursorColumn guibg=' . s:g[1]
+    execute 'highlight CursorLine guibg=' . s:palette.ui
+    execute 'highlight CursorColumn guibg=' . s:palette.ui
 
     " Visual selection
     execute 'highlight Visual guibg=' . s:g[1]
 
     " Status line
-    execute 'highlight StatusLine guibg=' . s:palette.black . ' guifg=' . s:g[22]
-    execute 'highlight StatusLineNC guibg=' . s:palette.black . ' guifg=' . s:g[11]
+    execute 'highlight StatusLine guibg=' . s:palette.black . ' guifg=' . s:g[19]
+    execute 'highlight StatusLineNC guibg=' . s:palette.black . ' guifg=' . s:g[9]
 
     " Tab line
-    execute 'highlight TabLine guibg=' . s:palette.black . ' guifg=' . s:g[11]
+    execute 'highlight TabLine guibg=' . s:palette.black . ' guifg=' . s:g[9]
     execute 'highlight TabLineFill guibg=' . s:palette.black
-    execute 'highlight TabLineSel guibg=' . s:palette.black . ' guifg=' . s:g[27]
+    execute 'highlight TabLineSel guibg=' . s:palette.black . ' guifg=' . s:g[23]
 
     " Fold column
-    execute 'highlight Folded guibg=' . s:palette.black . ' guifg=' . s:g[22]
-    execute 'highlight FoldColumn guibg=' . s:palette.black . ' guifg=' . s:g[5]
+    execute 'highlight Folded guibg=' . s:palette.black . ' guifg=' . s:g[19]
+    execute 'highlight FoldColumn guibg=' . s:palette.black . ' guifg=' . s:g[3]
 
     " Sign column
     execute 'highlight SignColumn guibg=' . s:palette.black
@@ -178,79 +173,80 @@ function! mono#Style()
     execute 'highlight VertSplit guifg=' . s:g[0]
 
     " Color column
-    execute 'highlight ColorColumn guibg=' . s:g[1]
+    execute 'highlight ColorColumn guibg=' . s:palette.ui
 
     " Conceal
-    execute 'highlight Conceal guifg=' . s:g[22]
+    execute 'highlight Conceal guifg=' . s:g[19]
 
     " Diff
-    execute 'highlight DiffAdd guibg=' . s:g[1] . ' guifg=' . s:g[28]
-    execute 'highlight DiffChange guibg=' . s:g[1] . ' guifg=' . s:g[19]
-    execute 'highlight DiffDelete guibg=' . s:g[1] . ' guifg=' . s:g[17]
-    execute 'highlight DiffText guibg=' . s:g[1] . ' guifg=' . s:g[26]
+    execute 'highlight DiffAdd guibg=' . s:palette.ui . ' guifg=' . s:g[23]
+    execute 'highlight DiffChange guibg=' . s:palette.ui . ' guifg=' . s:g[16]
+    execute 'highlight DiffDelete guibg=' . s:palette.ui . ' guifg=' . s:g[14]
+    execute 'highlight DiffText guibg=' . s:palette.ui . ' guifg=' . s:g[22]
 
     " Spell
-    execute 'highlight SpellBad gui=undercurl guisp=' . s:g[17]
-    execute 'highlight SpellCap gui=undercurl guisp=' . s:g[17]
-    execute 'highlight SpellLocal gui=undercurl guisp=' . s:g[17]
-    execute 'highlight SpellRare gui=undercurl guisp=' . s:g[17]
+    if g:monoUndercurl
+        execute 'highlight SpellBad gui=undercurl guisp=' . s:g[14]
+        execute 'highlight SpellCap gui=undercurl guisp=' . s:g[14]
+        execute 'highlight SpellLocal gui=undercurl guisp=' . s:g[14]
+        execute 'highlight SpellRare gui=undercurl guisp=' . s:g[14]
+    else
+        execute 'highlight SpellBad gui=underline guisp=' . s:g[14]
+        execute 'highlight SpellCap gui=underline guisp=' . s:g[14]
+        execute 'highlight SpellLocal gui=underline guisp=' . s:g[14]
+        execute 'highlight SpellRare gui=underline guisp=' . s:g[14]
+    endif
 
     " Pmenu
-    execute 'highlight Pmenu guibg=' . s:palette.black . ' guifg=' . s:g[22]
-    execute 'highlight PmenuSel guibg=' . s:g[1] . ' guifg=' . s:g[27]
+    execute 'highlight Pmenu guibg=' . s:palette.black . ' guifg=' . s:g[19]
+    execute 'highlight PmenuSel guibg=' . s:g[1] . ' guifg=' . s:g[23]
     execute 'highlight PmenuSbar guibg=' . s:g[1]
-    execute 'highlight PmenuThumb guibg=' . s:g[5]
+    execute 'highlight PmenuThumb guibg=' . s:g[3]
 
     " Wild menu
-    execute 'highlight WildMenu guibg=' . s:g[1] . ' guifg=' . s:g[27]
+    execute 'highlight WildMenu guibg=' . s:g[1] . ' guifg=' . s:g[23]
 
     " Error messages
-    execute 'highlight ErrorMsg guifg=' . s:g[17]
-    execute 'highlight WarningMsg guifg=' . s:g[16]
-    execute 'highlight MoreMsg guifg=' . s:g[22]
-    execute 'highlight Question guifg=' . s:g[22]
+    execute 'highlight ErrorMsg guifg=' . s:g[14]
+    execute 'highlight WarningMsg guifg=' . s:g[13]
+    execute 'highlight MoreMsg guifg=' . s:g[19]
+    execute 'highlight Question guifg=' . s:g[19]
 
     " Match parenthesis
     execute 'highlight MatchParen guibg=' . s:g[1]
 
     " Cursor
-    execute 'highlight Cursor guifg=' . s:g[26]
-    execute 'highlight lCursor guifg=' . s:g[26]
-    execute 'highlight CursorIM guifg=' . s:g[26]
+    execute 'highlight Cursor guifg=' . s:g[22]
+    execute 'highlight lCursor guifg=' . s:g[22]
+    execute 'highlight CursorIM guifg=' . s:g[22]
 
     " Special keys
-    execute 'highlight SpecialKey guifg=' . s:g[5]
-
-    " Non text
-    execute 'highlight NonText guifg=' . s:g[5]
+    execute 'highlight SpecialKey guifg=' . s:g[9]
 
     " Directory
-    execute 'highlight Directory guifg=' . s:g[22]
+    execute 'highlight Directory guifg=' . s:g[19]
 
     " Error
-    execute 'highlight Error guifg=' . s:g[17]
+    execute 'highlight Error guifg=' . s:g[14]
 
     " Underlined
-    execute 'highlight Underlined gui=underline guifg=' . s:g[26]
+    execute 'highlight Underlined gui=underline guifg=' . s:g[22]
 
     " Ignore
-    execute 'highlight Ignore guifg=' . s:g[5]
+    execute 'highlight Ignore guifg=' . s:g[3]
 
     " Todo
-    execute 'highlight Todo guifg=' . s:g[22]
+    execute 'highlight Todo guifg=' . s:g[19]
 
     " Quick fix line
-    execute 'highlight qfLineNr guifg=' . s:g[22]
+    execute 'highlight qfLineNr guifg=' . s:g[19]
 
     " Quick fix list
-    execute 'highlight qfFileName guifg=' . s:g[22]
+    execute 'highlight qfFileName guifg=' . s:g[19]
 
     " Keywords (e.g. local, return, function, if, else)
-    execute 'highlight Keyword guifg=' . s:g[19]
+    execute 'highlight Keyword guifg=' . s:g[16]
 
-    " Treesitter @variable
-    execute 'highlight @variable guifg=' . s:g[20]
-
-    " Treesitter @variable.member
-    execute 'highlight @variable.member guifg=' . s:g[26]
+    " Parentheses and quotes
+    execute 'highlight Delimiter guifg=' . s:g[22]
 endfunction
