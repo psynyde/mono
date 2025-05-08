@@ -16,9 +16,9 @@ let g:colors_name = 'mono'
 
 " Define theme options.
 let g:monoItalics = get(g:, 'monoItalics', v:true)
-let g:monoTerminalColors = get(g:, 'monoTerminalColors', v:true)
+let g:monoTerminalColors = get(g:, 'monoTerminalColors', v:false)
 let g:monoTransparent = get(g:, 'monoTransparent', v:false)
-let g:monoUndercurl = get(g:, 'monoUndercurl', v:true)
+let g:monoUndercurl = get(g:, 'monoUndercurl', v:false)
 
 " Load the appropriate style function.
 if has('nvim')
@@ -27,4 +27,4 @@ else
     call mono#Style()
 endif
 
-set background=dark " mono is a dark theme 
+set background=dark " mono is a dark theme

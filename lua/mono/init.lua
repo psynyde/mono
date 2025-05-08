@@ -114,8 +114,26 @@ M.style = function()
     -- Comments
     if g.monoItalics then
         highlight(0, "Comment", { fg = grey[6], italic = true })
+        highlight(0, "SpecialComment", { fg = grey[6], italic = true })
+        highlight(0, "Todo", { fg = grey[19], italic = true })
+        highlight(0, "Type", { fg = grey[20], italic = true })
+        highlight(0, "StorageClass", { fg = grey[16], italic = true })
+        highlight(0, "PreProc", { fg = grey[16], italic = true })
+        highlight(0, "Label", { fg = grey[17], italic = true })
+        highlight(0, "Exception", { fg = grey[14], italic = true })
+        highlight(0, "Keyword", { fg = grey[16], italic = true })
+        highlight(0, "Repeat", { fg = grey[16], italic = true })
     else
         highlight(0, "Comment", { fg = grey[6] })
+        highlight(0, "SpecialComment", { fg = grey[6] })
+        highlight(0, "Todo", { fg = grey[19] })
+        highlight(0, "Type", { fg = grey[20] })
+        highlight(0, "StorageClass", { fg = grey[16] })
+        highlight(0, "PreProc", { fg = grey[16] })
+        highlight(0, "Label", { fg = grey[17] })
+        highlight(0, "Exception", { fg = grey[14] })
+        highlight(0, "Keyword", { fg = grey[16] })
+        highlight(0, "Repeat", { fg = grey[16] })
     end
 
     -- Functions
@@ -192,8 +210,8 @@ M.style = function()
     highlight(0, "TabLineSel", { bg = p.black, fg = grey[23] })
 
     -- Fold column
-    highlight(0, "Folded", { bg = p.black, fg = grey[19] })
-    highlight(0, "FoldColumn", { bg = p.black, fg = grey[3] })
+    highlight(0, "Folded", { bg = grey.ui, fg = grey[19] })
+    highlight(0, "FoldColumn", { bg = grey.ui, fg = grey[3] })
 
     -- Sign column
     highlight(0, "SignColumn", { bg = p.black })
@@ -270,9 +288,6 @@ M.style = function()
     -- Ignore
     highlight(0, "Ignore", { fg = grey[3] })
 
-    -- Todo
-    highlight(0, "Todo", { fg = grey[19] })
-
     -- Quick fix line
     highlight(0, "qfLineNr", { fg = grey[19] })
 
@@ -293,6 +308,8 @@ M.style = function()
 
     -- Treesitter @property
     highlight(0, "@property", { fg = grey[22] })
+
+    highlight(0, "@string.escape", { fg = grey[16] })
 
     -- Treesitter @keyword.operator
     highlight(0, "@keyword.operator", { link = "Operator" })

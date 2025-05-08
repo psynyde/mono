@@ -17,7 +17,7 @@ function! mono#Style()
     let g:monoItalics = get(g:, 'monoItalics', v:true)
     let g:monoTerminalColors = get(g:, 'monoTerminalColors', v:true)
     let g:monoTransparent = get(g:, 'monoTransparent', v:false)
-    let g:monoUndercurl = get(g:, 'monoUndercurl', v:true)
+    let g:monoUndercurl = get(g:, 'monoUndercurl', v:false)
 
     " Background and foreground
     let s:palette = {
@@ -85,8 +85,26 @@ function! mono#Style()
     " Comments
     if g:monoItalics
         execute 'highlight Comment guifg=' . s:g[6] . ' gui=italic'
+        execute 'highlight SpecialComment guifg=' . s:g[6] . ' gui=italic'
+        execute 'highlight Todo guifg=' . s:g[19] . ' gui=italic'
+        execute 'highlight Type guifg=' . s:g[20] . ' gui=italic'
+        execute 'highlight StorageClass guifg=' . s:g[16] . ' gui=italic'
+        execute 'highlight PreProc guifg=' . s:g[16] . ' gui=italic'
+        execute 'highlight Label guifg=' . s:g[17] . ' gui=italic'
+        execute 'highlight Exception guifg=' . s:g[14] . ' gui=italic'
+        execute 'highlight Keyword guifg=' . s:g[16] . ' gui=italic'
+        execute 'highlight Repeat guifg=' . s:g[16] . ' gui=italic'
     else
         execute 'highlight Comment guifg=' . s:g[6]
+        execute 'highlight SpecialComment guifg=' . s:g[6]
+        execute 'highlight Todo guifg=' . s:g[19]
+        execute 'highlight Type guifg=' . s:g[20]
+        execute 'highlight StorageClass guifg=' . s:g[16]
+        execute 'highlight PreProc guifg=' . s:g[16]
+        execute 'highlight Label guifg=' . s:g[17]
+        execute 'highlight Exception guifg=' . s:g[14]
+        execute 'highlight Keyword guifg=' . s:g[16]
+        execute 'highlight Repeat guifg=' . s:g[16]
     endif
 
     " Functions
@@ -163,8 +181,8 @@ function! mono#Style()
     execute 'highlight TabLineSel guibg=' . s:palette.black . ' guifg=' . s:g[23]
 
     " Fold column
-    execute 'highlight Folded guibg=' . s:palette.black . ' guifg=' . s:g[19]
-    execute 'highlight FoldColumn guibg=' . s:palette.black . ' guifg=' . s:g[3]
+    execute 'highlight Folded guibg=' . s:palette.ui . ' guifg=' . s:g[19]
+    execute 'highlight FoldColumn guibg=' . s:palette.ui . ' guifg=' . s:g[3]
 
     " Sign column
     execute 'highlight SignColumn guibg=' . s:palette.black
@@ -183,6 +201,11 @@ function! mono#Style()
     execute 'highlight DiffChange guibg=' . s:palette.ui . ' guifg=' . s:g[16]
     execute 'highlight DiffDelete guibg=' . s:palette.ui . ' guifg=' . s:g[14]
     execute 'highlight DiffText guibg=' . s:palette.ui . ' guifg=' . s:g[22]
+
+    " GitSigns
+    execute 'highlight Added guifg=' . s:g[17]
+    execute 'highlight Changed guifg=' . s:g[17]
+    execute 'highlight Removed guifg=' . s:palette.diag_error
 
     " Spell
     if g:monoUndercurl
@@ -235,9 +258,6 @@ function! mono#Style()
     " Ignore
     execute 'highlight Ignore guifg=' . s:g[3]
 
-    " Todo
-    execute 'highlight Todo guifg=' . s:g[19]
-
     " Quick fix line
     execute 'highlight qfLineNr guifg=' . s:g[19]
 
@@ -249,4 +269,104 @@ function! mono#Style()
 
     " Parentheses and quotes
     execute 'highlight Delimiter guifg=' . s:g[22]
+
+    " Treesitter @variable
+    execute 'highlight @variable guifg=' . s:g[17]
+
+    " Treesitter @variable.member
+    execute 'highlight @variable.member guifg=' . s:g[22]
+
+    " Treesitter @property
+    execute 'highlight @property guifg=' . s:g[22]
+
+    " Treesitter @keyword.operator
+    execute 'highlight @keyword.operator guilink=Operator'
+
+    " Treesitter context
+    execute 'highlight TreesitterContext guibg=' . s:g[1]
+
+    " Treesitter context separator
+    execute 'highlight TreesitterContextSeparator guibg=' . s:g[1]
+
+    " Trouble highlights
+    execute 'highlight TroubleNormal guilink=Normal'
+
+    " Lazy highlights
+    execute 'highlight LazyNormal guilink=Normal'
+
+    " Floating window background
+    execute 'highlight NormalFloat guibg=' . s:palette.ui . ' guifg=' . s:g[22]
+
+    " Winbar and WinbarNC (window bar)
+    execute 'highlight Winbar guibg=' . s:palette.ui . ' guifg=' . s:g[19]
+    execute 'highlight WinbarNC guibg=' . s:palette.ui . ' guifg=' . s:g[9]
+
+    " Diagnostic highlights
+    execute 'highlight DiagnosticOk guifg=' . s:palette.diag_ok
+    execute 'highlight DiagnosticHint guifg=' . s:g[17]
+    execute 'highlight DiagnosticInfo guifg=' . s:g[17]
+    execute 'highlight DiagnosticWarn guifg=' . s:palette.diag_warn
+    execute 'highlight DiagnosticError guifg=' . s:palette.diag_error
+    execute 'highlight DiagnosticDeprecated guifg=' . s:palette.diag_warn
+    execute 'highlight DiagnosticUnnecessary guifg=' . s:g[9]
+
+    " Diagnostic virtual text
+    execute 'highlight DiagnosticVirtualTextOk guifg=' . s:palette.diag_ok
+    execute 'highlight DiagnosticVirtualTextHint guifg=' . s:g[17]
+    execute 'highlight DiagnosticVirtualTextInfo guifg=' . s:g[17]
+    execute 'highlight DiagnosticVirtualTextWarn guifg=' . s:palette.diag_warn
+    execute 'highlight DiagnosticVirtualTextError guifg=' . s:palette.diag_error
+
+    " Diagnostic signs
+    execute 'highlight DiagnosticSignOk guifg=' . s:palette.diag_ok
+    execute 'highlight DiagnosticSignInfo guifg=' . s:g[17]
+    execute 'highlight DiagnosticSignHint guifg=' . s:g[17]
+    execute 'highlight DiagnosticSignWarn guifg=' . s:palette.diag_warn
+    execute 'highlight DiagnosticSignError guifg=' . s:palette.diag_error
+    execute 'highlight DiagnosticSignDeprecated guifg=' . s:palette.diag_warn
+
+    " Diagnostic underlines
+    if g:monoUndercurl
+        execute 'highlight DiagnosticUnderlineWarn gui=undercurl guisp=' . s:palette.diag_warn
+        execute 'highlight DiagnosticUnderlineInfo gui=undercurl guisp=' . s:g[17]
+        execute 'highlight DiagnosticUnderlineHint gui=undercurl guisp=' . s:g[17]
+        execute 'highlight DiagnosticUnderlineError gui=undercurl guisp=' . s:palette.diag_error
+    else
+        execute 'highlight DiagnosticUnderlineWarn gui=underline guisp=' . s:palette.diag_warn
+        execute 'highlight DiagnosticUnderlineInfo gui=underline guisp=' . s:g[17]
+        execute 'highlight DiagnosticUnderlineHint gui=underline guisp=' . s:g[17]
+        execute 'highlight DiagnosticUnderlineError gui=underline guisp=' . s:palette.diag_error
+    endif
+
+    " LSP semantic tokens
+    execute 'highlight @lsp.type.boolean guilink=@boolean'
+    execute 'highlight @lsp.type.builtinType guilink=@type.builtin'
+    execute 'highlight @lsp.type.comment guilink=@comment'
+    execute 'highlight @lsp.type.enum guilink=@type'
+    execute 'highlight @lsp.type.enumMember guilink=@constant'
+    execute 'highlight @lsp.type.escapeSequence guilink=@string.escape'
+    execute 'highlight @lsp.type.formatSpecifier guilink=@punctuation.special'
+    execute 'highlight @lsp.type.interface guilink=@function.builtin'
+    execute 'highlight @lsp.type.keyword guilink=@keyword'
+    execute 'highlight @lsp.type.namespace guilink=@module'
+    execute 'highlight @lsp.type.number guilink=@number'
+    execute 'highlight @lsp.type.operator guilink=@operator'
+    execute 'highlight @lsp.type.parameter guilink=@parameter'
+    execute 'highlight @lsp.type.property guilink=@property'
+    execute 'highlight @lsp.type.selfKeyword guilink=@variable.builtin'
+    execute 'highlight @lsp.type.typeAlias guilink=@type.definition'
+    execute 'highlight @lsp.type.unresolvedReference guilink=@error'
+    execute 'highlight @lsp.type.variable guifg=' . s:g[17]
+    execute 'highlight @lsp.typemod.class.defaultLibrary guilink=@type.builtin'
+    execute 'highlight @lsp.typemod.enum.defaultLibrary guilink=@type.builtin'
+    execute 'highlight @lsp.typemod.enumMember.defaultLibrary guilink=@constant.builtin'
+    execute 'highlight @lsp.typemod.function.defaultLibrary guilink=@function.builtin'
+    execute 'highlight @lsp.typemod.keyword.async guilink=@keyword.coroutine'
+    execute 'highlight @lsp.typemod.macro.defaultLibrary guilink=@function.builtin'
+    execute 'highlight @lsp.typemod.method.defaultLibrary guilink=@function.builtin'
+    execute 'highlight @lsp.typemod.operator.injected guilink=@operator'
+    execute 'highlight @lsp.typemod.string.injected guilink=@string'
+    execute 'highlight @lsp.typemod.type.defaultLibrary guilink=@type.builtin'
+    execute 'highlight @lsp.typemod.variable.defaultLibrary guilink=@variable.builtin'
+    execute 'highlight @lsp.typemod.variable.injected guilink=@variable'
 endfunction
