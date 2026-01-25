@@ -5,7 +5,6 @@ A dark Neovim colorscheme based on Moonfly, with a focus on monochromatic aesthe
 ### NOTE:
 - Only tested with neovim.
 - Code stucture is now bullsh*t. all highlights are in a single file lmao
-- None of the statusline plugin tested.
 - Only works quite well with my nvim setup at `psynyde/nvim`. All plugins used by me are well supported :D
 
 ## Features
@@ -74,6 +73,19 @@ To customize the colorscheme, use the `setup` function.
 | `terminal_colors`   | Use the theme's palette for the terminal UI.      | `false`   |
 | `transparent`      | Use a transparent background.                     | `false`   |
 | `undercurl`        | Use undercurls for spelling and lint errors.      | `false`   |
+
+## Lualine
+
+This colorscheme includes a `lualine` theme. To use it, set the theme in your `lualine` configuration:
+
+```lua
+require('lualine').setup {
+  options = {
+    theme = 'mono'
+    -- ... your other lualine options
+  }
+}
+```
 
 ## License
 

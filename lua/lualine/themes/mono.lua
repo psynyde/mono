@@ -1,31 +1,30 @@
--- mono color scheme for lualine
---
--- URL:      github.com/bluz71/vim-mono-colors
--- License:  MIT (https://opensource.org/licenses/MIT)
+local config = require("mono.config")
+local palette = require("mono.palette")
+
+local p = palette.get(config.options)
+local grey = p.grey
 
 local colors = {
     -- StatusLine background colors.
-    color_bg1 = "#1d1d1d",
-    color_bg2 = "#101010",
+    color_bg1 = grey[1],
+    color_bg2 = p.black,
 
     -- Mode colors.
-    color1 = "#80a0ff",
-    color2 = "#36c692",
-    color3 = "#ae81ff",
-    color4 = "#e3c78a",
-    color5 = "#ff5189",
+    color1 = grey[22], -- Normal
+    color2 = grey[20], -- Insert
+    color3 = grey[18], -- Visual
+    color4 = grey[16], -- Command
+    color5 = grey[14], -- Replace
 
     -- Mode text color.
-    color6 = "#101010",
+    color6 = p.black,
 
     -- StatusLineNC foreground.
-    color7 = "#707070",
+    color7 = grey[17],
 
     -- Text colors.
-    color8 = "#ebebeb",
-    color9 = "#aaaaaa",
-    -- Treesitter @variable.member color
-    color_variable_member = "#aaaaaa",
+    color8 = p.white,
+    color9 = grey[22],
 }
 
 return {

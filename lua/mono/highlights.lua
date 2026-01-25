@@ -1,4 +1,3 @@
-
 local highlight = vim.api.nvim_set_hl
 
 local M = {}
