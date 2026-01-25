@@ -87,6 +87,10 @@ require('lualine').setup {
 }
 ```
 
+### Preview:
+<img width="1365" height="764" alt="image" src="https://github.com/user-attachments/assets/34fbb6b2-7f8f-4d5c-bf24-66796af79dcb" />
+<img width="1353" height="767" alt="image" src="https://github.com/user-attachments/assets/c59f4b13-e449-4310-b2a9-898a18456a44" />
+
 ## License
 
 [MIT License](LICENSE)
